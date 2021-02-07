@@ -13,5 +13,13 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Pre make
+      run: mkdir bin
     - name: make
       run: make noip
+    - name: Archive artifacts (NOIP Checker)
+      uses: actions/upload-artifact@v2
+      if: success()
+      with:
+        name: NOIP Checker
+        path: bin/noip
